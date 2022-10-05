@@ -1,13 +1,14 @@
-import mysql.connector
+from mysql import connector
+import pymysql
 import datetime
+import os
 import dotenv
 dotenv.load_dotenv()
-
-connection = mysql.connector.connect(
+connection = pymysql.Connect(
   host="localhost",
-  user="DB_CONNECTION_USER",
-  password="DB_CONNECTION_PASSWORD",
-  database="db_user_data"
+  user= os.getenv("DB_CONNECTION_USER"),
+  password= os.getenv("DB_CONNECTION_PASSWORD"),
+  database="db_user_data",
 )
 
 cursor = connection.cursor()
@@ -22,9 +23,8 @@ cursor = connection.cursor()
 #cursor.execute(sql, data)
 #connection.commit()
 
-userid = cursor.lastrowid
 
 cursor.close()
 connection.close()
 
-print("Foi cadastrado o novo usuário de ID:", userid)
+print("Foi cadastrado o novo usuário de ID:")

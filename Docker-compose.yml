@@ -1,0 +1,18 @@
+version: "3.5"
+services:
+  web:
+    container_name: django-container
+    build: "./Fin_plan"
+    restart: always
+    volumes:
+      - ./:/src
+    env_file:
+      - .env
+  sql:
+    container_name: MySQL
+    build: "./Fin_plan"
+    restart: always
+    volumes:
+      - ./:/src
+    env_file:
+      - .env
